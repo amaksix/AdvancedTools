@@ -108,10 +108,12 @@ public class AgentLogic : MonoBehaviour, IComparable
     private float boatWeight;
     [SerializeField]
     private float boatDistanceFactor;
-    [SerializeField]
-    private float enemyWeight;
+ 
     [SerializeField]
     private float enemyDistanceFactor;
+
+    [SerializeField]
+    private float enemyWeight;
 
     [Space(10)]
     [Header("Debug & Help")] 
@@ -133,7 +135,6 @@ public class AgentLogic : MonoBehaviour, IComparable
     private static float _sightInfluenceInSpeed = 0.0625f;
     private static float _maxUtilityChoiceChance = 0.85f;
     #endregion
-    private float minimalWeight = 0.2f;
     private void Awake()
     {
         Initiate();
@@ -240,10 +241,6 @@ public class AgentLogic : MonoBehaviour, IComparable
         {
             enemyDistanceFactor += Random.Range(-mutationFactor, +mutationFactor);
         }
-        if (enemyWeight < minimalWeight)
-        {
-            enemyWeight = minimalWeight;
-        }
     }
 
     private void Update()
@@ -343,7 +340,27 @@ public class AgentLogic : MonoBehaviour, IComparable
                     utility = distanceIndex * boatDistanceFactor + boatWeight;
                     break;
                 case "Enemy":
-                    utility = distanceIndex * enemyDistanceFactor + enemyWeight;
+                   
+                    if (gameObject.tag == "Enemy")
+                    {
+                        if (enemyWeight < raycastHit.collider.gameObject.GetComponent<PirateLogic>().enemyWeight)
+                        {
+                            if (enemyWeight < 0)
+                            {
+                                utility = distanceIndex * enemyDistanceFactor + enemyWeight; //if enemy weight is smaller then other pirate ship has then need for now this pirate ship will lose
+                            }
+                            else
+                            {
+                                utility = distanceIndex * enemyDistanceFactor - enemyWeight;
+                            }
+                        }
+                        else
+                        {
+                            utility = distanceIndex * enemyDistanceFactor + enemyWeight;
+                        }
+                    }
+                    else
+                        utility = distanceIndex * enemyDistanceFactor + enemyWeight;
                     break;
             }
         }
@@ -403,5 +420,16 @@ public class AgentLogic : MonoBehaviour, IComparable
     public AgentData GetData()
     {
         return new AgentData(steps, rayRadius, sight, movingSpeed, randomDirectionValue, boxWeight, distanceFactor, boatWeight, boatDistanceFactor, enemyWeight,  enemyDistanceFactor);
+    }
+
+    public float GetEnemyWeight( )
+    {
+       
+        return enemyWeight;
+    }
+
+    public void SetEnemyWeight(float weight)
+    {
+        enemyWeight = weight;
     }
 }
