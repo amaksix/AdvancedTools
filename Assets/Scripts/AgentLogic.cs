@@ -133,7 +133,7 @@ public class AgentLogic : MonoBehaviour, IComparable
     private static float _sightInfluenceInSpeed = 0.0625f;
     private static float _maxUtilityChoiceChance = 0.85f;
     #endregion
-    
+    private float minimalWeight = 0.2f;
     private void Awake()
     {
         Initiate();
@@ -239,6 +239,10 @@ public class AgentLogic : MonoBehaviour, IComparable
         if (Random.Range(0.0f, 100.0f) <= mutationChance)
         {
             enemyDistanceFactor += Random.Range(-mutationFactor, +mutationFactor);
+        }
+        if (enemyWeight < minimalWeight)
+        {
+            enemyWeight = minimalWeight;
         }
     }
 
