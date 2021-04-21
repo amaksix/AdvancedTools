@@ -115,6 +115,7 @@ public class AgentLogic : MonoBehaviour, IComparable
     [SerializeField]
     private float enemyWeight;
 
+    protected float weight;
     [Space(10)]
     [Header("Debug & Help")] 
     [SerializeField]
@@ -148,8 +149,13 @@ public class AgentLogic : MonoBehaviour, IComparable
         points = 0;
         steps = 360 / rayRadius;
         _rigidbody = GetComponent<Rigidbody>();
+        AditionalInitialization();
     }
-    
+
+    public virtual void AditionalInitialization()
+    {
+
+    }
     /// <summary>
     /// Copies the genes / weights from the parent.
     /// </summary>

@@ -8,9 +8,12 @@ public class PirateLogic : AgentLogic
     private static float _boxPoints = 0.1f;
     private static float _boatPoints = 5.0f;
     private static float _enemyPoints = 7.0f;
-
+    private static float minPirateWeight = 1;
+    private static float maxPirateWeight = 100;
+    private static float minPirateScaleMultiplier = 0.5f;
+    private static float maxPirateScaleMultiplier = 1.5f;
     #endregion
-
+    private float weight;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag.Equals("Box"))
@@ -18,6 +21,13 @@ public class PirateLogic : AgentLogic
             points += _boxPoints;
             Destroy(other.gameObject);
         }
+    }
+    
+    public override void AditionalInitialization()
+    {
+        weight = Random.Range(minPirateWeight, maxPirateWeight);
+        float scaleMultiplier = Random.Range(minPirateScaleMultiplier, maxPirateScaleMultiplier);
+        gameObject.transform.localScale = gameObject.transform.localScale * scaleMultiplier;
     }
 
     private void OnCollisionEnter(Collision other)
