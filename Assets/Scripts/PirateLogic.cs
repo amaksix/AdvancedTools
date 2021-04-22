@@ -53,16 +53,28 @@ public class PirateLogic : AgentLogic
         }
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            if (other.gameObject.GetComponent<PirateLogic>().Weight> gameObject.GetComponent<PirateLogic>().Weight)
+            if (other.gameObject.GetComponent<PirateLogic>().Weight<Weight)
             {
-                points -= _enemyPoints;
-            }
-            else
-            {
+                float firstShip = Random.Range(0, 100); //current ship chances
+                float secondShip = Random.Range(0, 100); //enemy ship chances
+                firstShip *= SceleMultiplier;
+                secondShip *= other.gameObject.GetComponent<PirateLogic>().SceleMultiplier;
                 Debug.Log("Killed pirate");
-                points += _enemyPoints;
-                Destroy(other.gameObject);
+                if (firstShip>secondShip)
+                {
+                    points += _enemyPoints;
+                    other.gameObject.GetComponent<PirateLogic>().points -= _enemyPoints;
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    points -= _enemyPoints; 
+                    other.gameObject.GetComponent<PirateLogic>().points += _enemyPoints;
+                    Destroy(gameObject);
+                }
+               
             }
+
            
         }
     }
