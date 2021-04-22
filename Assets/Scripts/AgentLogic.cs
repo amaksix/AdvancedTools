@@ -148,13 +148,8 @@ public class AgentLogic : MonoBehaviour, IComparable
         points = 0;
         steps = 360 / rayRadius;
         _rigidbody = GetComponent<Rigidbody>();
-        AditionalInitialization();
     }
-    //additional initialization if needed (used in pirate)
-    public virtual void AditionalInitialization()
-    {
 
-    }
     /// <summary>
     /// Copies the genes / weights from the parent.
     /// </summary>
@@ -346,26 +341,6 @@ public class AgentLogic : MonoBehaviour, IComparable
                     break;
                 case "Enemy":
                     utility = RecalculateEnemyFactors(distanceIndex, enemyDistanceFactor, raycastHit.collider.gameObject);
-                    /*if (gameObject.tag == "Enemy")
-                    {
-                        if (enemyWeight < raycastHit.collider.gameObject.GetComponent<PirateLogic>().enemyWeight)
-                        {
-                            if (enemyWeight < 0)
-                            {
-                                utility = distanceIndex * enemyDistanceFactor + enemyWeight; //if enemy weight is smaller then other pirate ship has then need for now this pirate ship will lose
-                            }
-                            else
-                            {
-                                utility = distanceIndex * enemyDistanceFactor - enemyWeight;
-                            }
-                        }
-                        else
-                        {
-                            utility = distanceIndex * enemyDistanceFactor + enemyWeight;
-                        }
-                    }
-                    else
-                        utility = distanceIndex * enemyDistanceFactor + enemyWeight;*/
                     break;
             }
         }

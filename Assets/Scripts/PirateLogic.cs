@@ -24,11 +24,10 @@ public class PirateLogic : AgentLogic
             Destroy(other.gameObject);
         }
     }
-    
-    public override void AditionalInitialization()
+    public void ApplyScalingAndWeight()
     {
         Weight = Random.Range(minPirateWeight, maxPirateWeight);
-        SceleMultiplier =Weight/100;
+        SceleMultiplier = Weight / 100;
         gameObject.transform.localScale = gameObject.transform.localScale * SceleMultiplier;
     }
 

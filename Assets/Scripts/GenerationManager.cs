@@ -126,7 +126,7 @@ public class GenerationManager : MonoBehaviour
                     PirateLogic pirateParent = pirateParents[Random.Range(0, pirateParents.Length)];
                     pirate.Birth(pirateParent.GetData());
                 }
-
+                pirate.ApplyScalingAndWeight();
                 pirate.Mutate(mutationFactor, mutationChance);
                 pirate.AwakeUp();
             }
