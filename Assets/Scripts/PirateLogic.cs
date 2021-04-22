@@ -10,8 +10,6 @@ public class PirateLogic : AgentLogic
     private static float _enemyPoints = 7.0f;
     private static float minPirateWeight = 50;
     private static float maxPirateWeight = 150;
-    private static float minPirateScaleMultiplier = 0.5f;
-    private static float maxPirateScaleMultiplier = 1.5f;
     #endregion
     public float Weight;
     public float SceleMultiplier;
@@ -26,6 +24,7 @@ public class PirateLogic : AgentLogic
     }
     public void ApplyScalingAndWeight()
     {
+        Debug.Log(GetEnemyWeight());
         Weight = Random.Range(minPirateWeight, maxPirateWeight);
         SceleMultiplier = Weight / 100;
         gameObject.transform.localScale = gameObject.transform.localScale * SceleMultiplier;
@@ -35,18 +34,11 @@ public class PirateLogic : AgentLogic
     {
         if(Weight>collidedObj.GetComponent<PirateLogic>().Weight)
         {
-            return distanceIndex * enemyDistanceFactor + GetEnemyWeight();
+           return distanceIndex * enemyDistanceFactor + GetEnemyWeight();
         }
         else
         {
-            if (GetEnemyWeight()>0)
-            {
-                return distanceIndex * enemyDistanceFactor - GetEnemyWeight();
-            }
-            else
-            {
-                return distanceIndex * enemyDistanceFactor + GetEnemyWeight();
-            }
+           return distanceIndex * enemyDistanceFactor - GetEnemyWeight();
         }
         return distanceIndex * enemyDistanceFactor + GetEnemyWeight();
     }

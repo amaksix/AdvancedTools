@@ -41,7 +41,11 @@ public class GenerationManager : MonoBehaviour
     [Header("Prefab Saving")]
     [SerializeField]
     private string savePrefabsAt;
-    
+
+    private float pirateTotalScores = 0;
+    private float pirateRoundScores = 0;
+    private float boatTotalScores = 0;
+    private float boatRoundScores = 0;
     /// <summary>
     /// Those variables are used mostly for debugging in the inspector.
     /// </summary>
@@ -188,7 +192,13 @@ public class GenerationManager : MonoBehaviour
         lastBoatWinner.name += "Gen-" + generationCount; 
         lastBoatWinnerData = lastBoatWinner.GetData();
         PrefabUtility.SaveAsPrefabAsset(lastBoatWinner.gameObject, savePrefabsAt + lastBoatWinner.name + ".prefab");
-        
+        boatRoundScores = 0;
+        foreach(BoatLogic boat in _activeBoats)
+        {
+            
+            boatRoundScores += boat.GetPoints();
+        }
+        boatTotalScores += boatRoundScores;
         _activePirates.RemoveAll(item => item == null);
         _activePirates.Sort();
         _pirateParents = new PirateLogic[pirateParentSize];
@@ -198,13 +208,18 @@ public class GenerationManager : MonoBehaviour
         }
 
         PirateLogic lastPirateWinner = _activePirates[0];
+        pirateRoundScores = 0;
+        foreach (PirateLogic pirate in _activePirates)
+        {
+            pirateRoundScores += pirate.GetPoints();
+        }
+        pirateTotalScores += pirateRoundScores;
         lastPirateWinner.name += "Gen-" + generationCount; 
         lastPirateWinnerData = lastPirateWinner.GetData();
         PrefabUtility.SaveAsPrefabAsset(lastPirateWinner.gameObject, savePrefabsAt + lastPirateWinner.name + ".prefab");
-        
         //Winners:
         Debug.Log("Last winner boat had: " + lastBoatWinner.GetPoints() + " points!" + " Last winner pirate had: " + lastPirateWinner.GetPoints() + " points!");
-        
+        Debug.Log("Total boats:" + boatTotalScores + "||Round boats:" + boatRoundScores + "||TotalPiratesScores:" + pirateTotalScores + "||PiratesRoundScores" + pirateRoundScores);
         GenerateObjects(_boatParents, _pirateParents);
     }
 
