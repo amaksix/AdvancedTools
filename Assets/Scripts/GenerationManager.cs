@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using System.IO;
 public class GenerationManager : MonoBehaviour
 {
     [Header("Generators")]
@@ -218,6 +218,23 @@ public class GenerationManager : MonoBehaviour
         lastPirateWinnerData = lastPirateWinner.GetData();
         PrefabUtility.SaveAsPrefabAsset(lastPirateWinner.gameObject, savePrefabsAt + lastPirateWinner.name + ".prefab");
         //Winners:
+
+        //Storing results
+        string path = "Assets/Overallresults.txt";
+        //Write some text to the test.txt file
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine("Generations count"+generationCount+ "||Total boats:" + boatTotalScores + "||TotalPiratesScores:" + pirateTotalScores);
+        writer.Close();
+        path = "Assets/BoatsTotalScores.txt";
+        //Write some text to the test.txt file
+        writer = new StreamWriter(path, true);
+        writer.WriteLine(boatTotalScores);
+        writer.Close();
+        path = "Assets/PiratesTotalScores.txt";
+        writer = new StreamWriter(path, true);
+        writer.WriteLine(pirateTotalScores);
+        writer.Close();
+
         Debug.Log("Last winner boat had: " + lastBoatWinner.GetPoints() + " points!" + " Last winner pirate had: " + lastPirateWinner.GetPoints() + " points!");
         Debug.Log("Total boats:" + boatTotalScores + "||Round boats:" + boatRoundScores + "||TotalPiratesScores:" + pirateTotalScores + "||PiratesRoundScores" + pirateRoundScores);
         GenerateObjects(_boatParents, _pirateParents);
