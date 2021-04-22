@@ -115,7 +115,6 @@ public class AgentLogic : MonoBehaviour, IComparable
     [SerializeField]
     private float enemyWeight;
 
-    protected float weight;
     [Space(10)]
     [Header("Debug & Help")] 
     [SerializeField]
@@ -151,7 +150,7 @@ public class AgentLogic : MonoBehaviour, IComparable
         _rigidbody = GetComponent<Rigidbody>();
         AditionalInitialization();
     }
-
+    //additional initialization if needed (used in pirate)
     public virtual void AditionalInitialization()
     {
 
@@ -346,8 +345,8 @@ public class AgentLogic : MonoBehaviour, IComparable
                     utility = distanceIndex * boatDistanceFactor + boatWeight;
                     break;
                 case "Enemy":
-                   
-                    if (gameObject.tag == "Enemy")
+                    utility = RecalculateEnemyFactors(distanceIndex, enemyDistanceFactor, raycastHit.collider.gameObject);
+                    /*if (gameObject.tag == "Enemy")
                     {
                         if (enemyWeight < raycastHit.collider.gameObject.GetComponent<PirateLogic>().enemyWeight)
                         {
@@ -366,7 +365,7 @@ public class AgentLogic : MonoBehaviour, IComparable
                         }
                     }
                     else
-                        utility = distanceIndex * enemyDistanceFactor + enemyWeight;
+                        utility = distanceIndex * enemyDistanceFactor + enemyWeight;*/
                     break;
             }
         }
@@ -375,6 +374,10 @@ public class AgentLogic : MonoBehaviour, IComparable
         return direction;
     }
 
+    public virtual float RecalculateEnemyFactors(float distanceIndex, float enemyDistanceFactor,GameObject collidedObj)
+    {
+        return distanceIndex * enemyDistanceFactor + enemyWeight;//base for boats
+    }
     /// <summary>
     /// Activates the agent update method.
     /// Does nothing if the agent is already awake.
@@ -433,7 +436,11 @@ public class AgentLogic : MonoBehaviour, IComparable
        
         return enemyWeight;
     }
+    public float GetDistanceFactor()
+    {
 
+        return distanceFactor;
+    }
     public void SetEnemyWeight(float weight)
     {
         enemyWeight = weight;

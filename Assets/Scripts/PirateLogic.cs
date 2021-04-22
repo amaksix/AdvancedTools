@@ -14,6 +14,7 @@ public class PirateLogic : AgentLogic
     private static float maxPirateScaleMultiplier = 1.5f;
     #endregion
     private float weight;
+    private float scaleMultiplier;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag.Equals("Box"))
@@ -26,8 +27,13 @@ public class PirateLogic : AgentLogic
     public override void AditionalInitialization()
     {
         weight = Random.Range(minPirateWeight, maxPirateWeight);
-        float scaleMultiplier = Random.Range(minPirateScaleMultiplier, maxPirateScaleMultiplier);
+        scaleMultiplier = Random.Range(minPirateScaleMultiplier, maxPirateScaleMultiplier);
         gameObject.transform.localScale = gameObject.transform.localScale * scaleMultiplier;
+    }
+
+    public override float RecalculateEnemyFactors(float distanceIndex, float enemyDistanceFactor, GameObject collidedObj)
+    {
+        return distanceIndex * enemyDistanceFactor + GetEnemyWeight();
     }
 
     private void OnCollisionEnter(Collision other)
