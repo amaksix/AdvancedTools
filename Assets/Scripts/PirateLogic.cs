@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class PirateLogic : AgentLogic
 {
     #region Static Variables
-    private static float _boxPoints = 1f;
+    private static float _boxPoints = 0.1f;
     private static float _boatPoints = 5.0f;
     private static float _enemyPoints = 7.0f;
     private static float minPirateWeight = 50;
@@ -24,6 +24,7 @@ public class PirateLogic : AgentLogic
     }
     public void ApplyScalingAndWeight()
     {
+        Debug.Log(GetEnemyWeight());
         Weight = Random.Range(minPirateWeight, maxPirateWeight);
         SceleMultiplier = Weight / 100;
         gameObject.transform.localScale = gameObject.transform.localScale * SceleMultiplier;
@@ -71,7 +72,11 @@ public class PirateLogic : AgentLogic
                     other.gameObject.GetComponent<PirateLogic>().points += _enemyPoints;
                     Destroy(gameObject);
                 }
+
             }
+
+
         }
     }
+
 }

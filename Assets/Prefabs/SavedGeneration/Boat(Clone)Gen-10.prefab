@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3677655804509860652
+--- !u!1 &7005233816287755664
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,100 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6300764630988308681}
-  - component: {fileID: 8490256947391545840}
-  - component: {fileID: 590422826517918377}
+  - component: {fileID: 3902269144957274525}
+  - component: {fileID: 7419423326244223303}
+  - component: {fileID: 2057267617507584594}
+  - component: {fileID: 6011403344684028629}
+  m_Layer: 0
+  m_Name: Boat(Clone)Gen-10
+  m_TagString: Boat
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3902269144957274525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005233816287755664}
+  m_LocalRotation: {x: -0, y: 0.9708015, z: -0, w: -0.2398844}
+  m_LocalPosition: {x: 4.193074, y: 0, z: 1.0721118}
+  m_LocalScale: {x: 0.026049504, y: 0.026049502, z: 0.026049504}
+  m_Children:
+  - {fileID: 7137252339060265406}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7419423326244223303
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005233816287755664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 2, z: 3}
+  m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!54 &2057267617507584594
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005233816287755664}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &6011403344684028629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005233816287755664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac962a5b50ed44584b65086c49fa5d65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 16
+  steps: 21
+  rayRadius: 16
+  sight: 31.289951
+  movingSpeed: 8.298882
+  randomDirectionValue: {x: -9.882957, y: 5.10479}
+  boxWeight: 3.419759
+  distanceFactor: 3.8628914
+  boatWeight: -0.3090874
+  boatDistanceFactor: 8.419308
+  enemyDistanceFactor: -7.513058
+  enemyWeight: 0.81767464
+  visionColor: {r: 0.21466713, g: 0.29546288, b: 0.6792453, a: 1}
+  foundColor: {r: 0.59033465, g: 0.59780955, b: 0.6226415, a: 1}
+  directionColor: {r: 0.4433962, g: 0.39784816, b: 0.10666606, a: 1}
+  debug: 1
+--- !u!1 &8828190087357307812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7137252339060265406}
+  - component: {fileID: 6673628256621338118}
+  - component: {fileID: 8759054834408905176}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -18,35 +109,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6300764630988308681
+--- !u!4 &7137252339060265406
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3677655804509860652}
+  m_GameObject: {fileID: 8828190087357307812}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4646265111912791454}
+  m_Father: {fileID: 3902269144957274525}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8490256947391545840
+--- !u!33 &6673628256621338118
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3677655804509860652}
+  m_GameObject: {fileID: 8828190087357307812}
   m_Mesh: {fileID: 4300000, guid: cf3f88aabe83ea34488ec9761d6b71b2, type: 3}
---- !u!23 &590422826517918377
+--- !u!23 &8759054834408905176
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3677655804509860652}
+  m_GameObject: {fileID: 8828190087357307812}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -79,94 +170,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &4738009026520578399
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4646265111912791454}
-  - component: {fileID: 5804486177533114019}
-  - component: {fileID: 6748292791066308717}
-  - component: {fileID: 2741874921738109306}
-  m_Layer: 0
-  m_Name: Boat(Clone)Gen-10
-  m_TagString: Boat
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4646265111912791454
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4738009026520578399}
-  m_LocalRotation: {x: -0, y: -0.93159264, z: -0, w: 0.363504}
-  m_LocalPosition: {x: 0.7978589, y: -0.000000012421371, z: 0.06385851}
-  m_LocalScale: {x: 0.026049502, y: 0.026049502, z: 0.026049502}
-  m_Children:
-  - {fileID: 6300764630988308681}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5804486177533114019
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4738009026520578399}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 3}
-  m_Center: {x: 0, y: 0.8, z: 0}
---- !u!54 &6748292791066308717
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4738009026520578399}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &2741874921738109306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4738009026520578399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac962a5b50ed44584b65086c49fa5d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: 4
-  steps: 21
-  rayRadius: 14
-  sight: 29.04175
-  movingSpeed: 6.6907477
-  randomDirectionValue: {x: 1.110559, y: 2.1906238}
-  boxWeight: 0.7379105
-  distanceFactor: 2.5520992
-  boatWeight: 1.9232383
-  boatDistanceFactor: -0.11389053
-  enemyDistanceFactor: -2.2931323
-  enemyWeight: -3.664339
-  visionColor: {r: 0.21466713, g: 0.29546288, b: 0.6792453, a: 1}
-  foundColor: {r: 0.59033465, g: 0.59780955, b: 0.6226415, a: 1}
-  directionColor: {r: 0.4433962, g: 0.39784816, b: 0.10666606, a: 1}
-  debug: 1
