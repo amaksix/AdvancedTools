@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class PirateLogic : AgentLogic
 {
     #region Static Variables
-    private static float _boxPoints = 0.1f;
+    private static float _boxPoints = 1f;
     private static float _boatPoints = 5.0f;
     private static float _enemyPoints = 7.0f;
     private static float minPirateWeight = 50;
@@ -63,7 +63,7 @@ public class PirateLogic : AgentLogic
                 if (firstShip > secondShip)
                 {
                     points += _enemyPoints;
-                    other.gameObject.GetComponent<PirateLogic>().points -= _enemyPoints;
+                    other.gameObject.GetComponent<PirateLogic>().points -= _enemyPoints/2;
                     Destroy(other.gameObject);
                 }
                 else
