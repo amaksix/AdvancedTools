@@ -130,7 +130,7 @@ public class GenerationManager : MonoBehaviour
                     PirateLogic pirateParent = pirateParents[Random.Range(0, pirateParents.Length)];
                     pirate.Birth(pirateParent.GetData());
                 }
-               // pirate.ApplyScalingAndWeight();
+                pirate.ApplyScalingAndWeight();
                 pirate.Mutate(mutationFactor, mutationChance);
                 pirate.AwakeUp();
             }
@@ -226,13 +226,20 @@ public class GenerationManager : MonoBehaviour
         writer.WriteLine("Generations count"+generationCount+ "||Total boats:" + boatTotalScores + "||TotalPiratesScores:" + pirateTotalScores);
         writer.Close();
         path = "Assets/BoatsTotalScores.txt";
-        //Write some text to the test.txt file
         writer = new StreamWriter(path, true);
         writer.WriteLine(boatTotalScores);
         writer.Close();
         path = "Assets/PiratesTotalScores.txt";
         writer = new StreamWriter(path, true);
         writer.WriteLine(pirateTotalScores);
+        writer.Close();
+        path = "Assets/BoatsRoundScores.txt";
+        writer = new StreamWriter(path, true);
+        writer.WriteLine(boatRoundScores);
+        writer.Close();
+        path = "Assets/PiratesRoundScores.txt";
+        writer = new StreamWriter(path, true);
+        writer.WriteLine(pirateRoundScores);
         writer.Close();
 
         Debug.Log("Last winner boat had: " + lastBoatWinner.GetPoints() + " points!" + " Last winner pirate had: " + lastPirateWinner.GetPoints() + " points!");
